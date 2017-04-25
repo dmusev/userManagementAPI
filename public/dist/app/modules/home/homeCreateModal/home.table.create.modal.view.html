@@ -1,0 +1,38 @@
+<button (click)='onCreateUserClick(emailAddress)' type="button" id="createUser" class="btn btn-primary">Create user</button>
+<div bsModal #modalCreateWindow="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Create user</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createForm" id="createForm" (submit)="createUser(createForm.value)" novalidate="novalidate">
+                    <div class="form-group">
+                        <label for="emailAddress" class="control-label">Email</label>
+                        <input [formControl]="createForm.controls['emailAddress']" type="text" class="form-control" id="emailAddress" name="emailAddress" title="Please enter you email" placeholder="example@gmail.com">
+                        <div *ngIf="createForm.controls['emailAddress'].hasError('required') && createForm.controls['emailAddress'].touched" class="alert alert-danger">Add an email.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">Password</label>
+                        <input [formControl]="createForm.controls['password']" type="password" class="form-control" id="password" name="password" title="Please enter your password">
+                        <div *ngIf="(createForm.controls['password'].hasError('required') && createForm.controls['password'].touched) || (!createForm.controls['password'].valid && createForm.controls['password'].touched)" class="alert alert-danger">You must add at least 5 symbol password.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="forename" class="control-label">Forename</label>
+                        <input [formControl]="createForm.controls['forename']" type="text" class="form-control" id="forename" name="forename" title="Please enter your forename">
+                    </div>
+                    <div class="form-group">
+                        <label for="surname" class="control-label">Last name</label>
+                        <input [formControl]="createForm.controls['surname']" type="text" class="form-control" id="surname" name="surname" title="Please enter your surname">
+                    </div>
+                    <div *ngIf="ajaxReqError" class="alert alert-danger ">Cannot create user right now.</div>
+                    <div *ngIf="userExistsError" class="alert alert-danger">Such user email address exists.</div>
+                    <button type="submit " class="btn btn-success btn-block " [disabled]="!createForm.valid">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

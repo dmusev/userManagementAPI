@@ -1,0 +1,16 @@
+html {
+    height: 100%;
+}
+body {
+    text-align: center;
+    /*background-repeat: no-repeat;*/
+    background-color: rgb(165, 225, 254);
+    height: 100%;
+    min-height: 100%;
+}
+
+h1 {
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+}

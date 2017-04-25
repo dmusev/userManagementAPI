@@ -1,0 +1,10 @@
+.container {
+    background-color: white;
+    box-shadow: 0 0 30px black;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+
+#pagination {
+    margin: 5px;
+}

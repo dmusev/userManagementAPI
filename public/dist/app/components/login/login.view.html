@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="well">
+                <form [formGroup]="loginForm" id="loginForm" (submit)="submitLogin(loginForm.value)" novalidate="novalidate">
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <input [formControl]="loginForm.controls['email']" type="text" class="form-control" id="email" name="email" title="Please enter you email" placeholder="example@gmail.com">
+                        <div *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="alert alert-danger">Add an email.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">Password</label>
+                        <input [formControl]="loginForm.controls['password']" type="password" class="form-control" id="password" name="password" title="Please enter your password">
+                        <div *ngIf="(loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched)" class="alert alert-danger">You must add a password.</div>
+                        <div *ngIf="userNotFound" class="alert alert-danger">Wrong email or password!</div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block" [disabled]="!loginForm.valid">Login</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

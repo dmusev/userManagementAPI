@@ -1,0 +1,32 @@
+<div bsModal #modalUpdateWindow="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Update selected user</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form (submit)="updateUser(modalForm)" #modalForm="ngForm" id="modalForm" role="form">
+                    <div class="float-label-control">
+                        <label for="emailAddres" class="control-label">Email</label>
+                        <input [(ngModel)]="modalModel.emailAddress" #emailAddress="ngModel" required type="text" class="form-control" id="emailAddres" name="emailAddres" title="Please enter you email" placeholder="example@gmail.com">
+                        <div *ngIf="!emailAddress.valid && emailAddress.touched" class="alert alert-danger ">Add an email.</div>
+                    </div>
+                    <div class="float-label-control ">
+                        <label for="forename" class="control-label ">Forename</label>
+                        <input [(ngModel)]="modalModel.forename" type="text " id="forename " class="form-control " name="forename " title="Please enter you forename">
+                    </div>
+                    <div class="float-label-control ">
+                        <label for="surname" class="control-label ">Surname</label>
+                        <input [(ngModel)]="modalModel.surname" type="text " id="surname " class="form-control " name="surname " title="Please enter you surname ">
+                    </div>
+                    <div *ngIf="ajaxReqError" class="alert alert-danger ">Cannot edit user right now.</div>
+                    <button type="submit" class="btn btn-success btn-block " [disabled]="!modalForm.valid ">Update</button>
+                </form>
+                <button (click)="removeUser()" class="btn btn-danger btn-block">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
